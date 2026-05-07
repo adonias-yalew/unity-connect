@@ -17,6 +17,7 @@ import { Route as CommunityRouteImport } from './routes/community'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppShopRouteImport } from './routes/app.shop'
+import { Route as AppDonateRouteImport } from './routes/app.donate'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
 import { Route as AppContentRouteImport } from './routes/app.content'
 import { Route as AppCommunityRouteImport } from './routes/app.community'
@@ -62,6 +63,11 @@ const AppShopRoute = AppShopRouteImport.update({
   path: '/shop',
   getParentRoute: () => AppRoute,
 } as any)
+const AppDonateRoute = AppDonateRouteImport.update({
+  id: '/donate',
+  path: '/donate',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/app/community': typeof AppCommunityRoute
   '/app/content': typeof AppContentRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/donate': typeof AppDonateRoute
   '/app/shop': typeof AppShopRoute
 }
 export interface FileRoutesByTo {
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/app/community': typeof AppCommunityRoute
   '/app/content': typeof AppContentRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/donate': typeof AppDonateRoute
   '/app/shop': typeof AppShopRoute
 }
 export interface FileRoutesById {
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   '/app/community': typeof AppCommunityRoute
   '/app/content': typeof AppContentRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/donate': typeof AppDonateRoute
   '/app/shop': typeof AppShopRoute
 }
 export interface FileRouteTypes {
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
     | '/app/community'
     | '/app/content'
     | '/app/dashboard'
+    | '/app/donate'
     | '/app/shop'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -154,6 +164,7 @@ export interface FileRouteTypes {
     | '/app/community'
     | '/app/content'
     | '/app/dashboard'
+    | '/app/donate'
     | '/app/shop'
   id:
     | '__root__'
@@ -168,6 +179,7 @@ export interface FileRouteTypes {
     | '/app/community'
     | '/app/content'
     | '/app/dashboard'
+    | '/app/donate'
     | '/app/shop'
   fileRoutesById: FileRoutesById
 }
@@ -239,6 +251,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppShopRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/donate': {
+      id: '/app/donate'
+      path: '/donate'
+      fullPath: '/app/donate'
+      preLoaderRoute: typeof AppDonateRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/dashboard': {
       id: '/app/dashboard'
       path: '/dashboard'
@@ -275,6 +294,7 @@ interface AppRouteChildren {
   AppCommunityRoute: typeof AppCommunityRoute
   AppContentRoute: typeof AppContentRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppDonateRoute: typeof AppDonateRoute
   AppShopRoute: typeof AppShopRoute
 }
 
@@ -283,6 +303,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppCommunityRoute: AppCommunityRoute,
   AppContentRoute: AppContentRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppDonateRoute: AppDonateRoute,
   AppShopRoute: AppShopRoute,
 }
 
