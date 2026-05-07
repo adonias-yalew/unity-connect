@@ -1,11 +1,13 @@
 import { Link, useRouterState } from "@tanstack/react-router";
+import { LayoutDashboard, MessagesSquare, BookOpen, Store, HandHeart, ShieldCheck, LogOut } from "lucide-react";
 import { useAuth } from "@/modules/auth/hooks/useAuth";
 
 const items = [
-  { to: "/app/dashboard", label: "Dashboard", icon: "◈" },
-  { to: "/app/community", label: "Community", icon: "✦" },
-  { to: "/app/content", label: "Content", icon: "❋" },
-  { to: "/app/shop", label: "Shop", icon: "✿" },
+  { to: "/app/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/app/community", label: "Community", icon: MessagesSquare },
+  { to: "/app/content", label: "Content", icon: BookOpen },
+  { to: "/app/shop", label: "Shop", icon: Store },
+  { to: "/app/donate", label: "Donate", icon: HandHeart },
 ] as const;
 
 export function Sidebar() {
@@ -13,7 +15,7 @@ export function Sidebar() {
   const path = useRouterState({ select: (s) => s.location.pathname });
 
   const allItems = user?.role === "admin"
-    ? [...items, { to: "/app/admin" as const, label: "Admin", icon: "✪" }]
+    ? [...items, { to: "/app/admin" as const, label: "Admin", icon: ShieldCheck }]
     : items;
 
   return (
@@ -25,6 +27,7 @@ export function Sidebar() {
       <nav className="flex-1 space-y-1 px-3 py-6">
         {allItems.map((item) => {
           const active = path === item.to;
+          const Icon = item.icon;
           return (
             <Link
               key={item.to}
@@ -35,7 +38,7 @@ export function Sidebar() {
                   : "text-muted-foreground hover:bg-sidebar-accent hover:text-foreground"
               }`}
             >
-              <span className="text-base text-primary">{item.icon}</span>
+              <Icon className={`h-4 w-4 ${active ? "text-primary" : ""}`} />
               {item.label}
             </Link>
           );
@@ -53,8 +56,9 @@ export function Sidebar() {
         </div>
         <button
           onClick={logout}
-          className="w-full rounded-md border border-border px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+          className="flex w-full items-center justify-center gap-2 rounded-md border border-border px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
         >
+          <LogOut className="h-3.5 w-3.5" />
           Log out
         </button>
       </div>
