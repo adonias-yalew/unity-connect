@@ -9,38 +9,222 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as ShopRouteImport } from './routes/shop'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ContentRouteImport } from './routes/content'
+import { Route as CommunityRouteImport } from './routes/community'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppShopRouteImport } from './routes/app.shop'
+import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
+import { Route as AppContentRouteImport } from './routes/app.content'
+import { Route as AppCommunityRouteImport } from './routes/app.community'
+import { Route as AppAdminRouteImport } from './routes/app.admin'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContentRoute = ContentRouteImport.update({
+  id: '/content',
+  path: '/content',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppShopRoute = AppShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppContentRoute = AppContentRouteImport.update({
+  id: '/content',
+  path: '/content',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCommunityRoute = AppCommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdminRoute = AppAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/community': typeof CommunityRoute
+  '/content': typeof ContentRoute
+  '/login': typeof LoginRoute
+  '/shop': typeof ShopRoute
+  '/signup': typeof SignupRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/community': typeof AppCommunityRoute
+  '/app/content': typeof AppContentRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/shop': typeof AppShopRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/community': typeof CommunityRoute
+  '/content': typeof ContentRoute
+  '/login': typeof LoginRoute
+  '/shop': typeof ShopRoute
+  '/signup': typeof SignupRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/community': typeof AppCommunityRoute
+  '/app/content': typeof AppContentRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/shop': typeof AppShopRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/community': typeof CommunityRoute
+  '/content': typeof ContentRoute
+  '/login': typeof LoginRoute
+  '/shop': typeof ShopRoute
+  '/signup': typeof SignupRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/community': typeof AppCommunityRoute
+  '/app/content': typeof AppContentRoute
+  '/app/dashboard': typeof AppDashboardRoute
+  '/app/shop': typeof AppShopRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/community'
+    | '/content'
+    | '/login'
+    | '/shop'
+    | '/signup'
+    | '/app/admin'
+    | '/app/community'
+    | '/app/content'
+    | '/app/dashboard'
+    | '/app/shop'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/app'
+    | '/community'
+    | '/content'
+    | '/login'
+    | '/shop'
+    | '/signup'
+    | '/app/admin'
+    | '/app/community'
+    | '/app/content'
+    | '/app/dashboard'
+    | '/app/shop'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/community'
+    | '/content'
+    | '/login'
+    | '/shop'
+    | '/signup'
+    | '/app/admin'
+    | '/app/community'
+    | '/app/content'
+    | '/app/dashboard'
+    | '/app/shop'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  CommunityRoute: typeof CommunityRoute
+  ContentRoute: typeof ContentRoute
+  LoginRoute: typeof LoginRoute
+  ShopRoute: typeof ShopRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/content': {
+      id: '/content'
+      path: '/content'
+      fullPath: '/content'
+      preLoaderRoute: typeof ContentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +232,71 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/shop': {
+      id: '/app/shop'
+      path: '/shop'
+      fullPath: '/app/shop'
+      preLoaderRoute: typeof AppShopRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dashboard': {
+      id: '/app/dashboard'
+      path: '/dashboard'
+      fullPath: '/app/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/content': {
+      id: '/app/content'
+      path: '/content'
+      fullPath: '/app/content'
+      preLoaderRoute: typeof AppContentRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/community': {
+      id: '/app/community'
+      path: '/community'
+      fullPath: '/app/community'
+      preLoaderRoute: typeof AppCommunityRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/admin': {
+      id: '/app/admin'
+      path: '/admin'
+      fullPath: '/app/admin'
+      preLoaderRoute: typeof AppAdminRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAdminRoute: typeof AppAdminRoute
+  AppCommunityRoute: typeof AppCommunityRoute
+  AppContentRoute: typeof AppContentRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppShopRoute: typeof AppShopRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAdminRoute: AppAdminRoute,
+  AppCommunityRoute: AppCommunityRoute,
+  AppContentRoute: AppContentRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppShopRoute: AppShopRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  CommunityRoute: CommunityRoute,
+  ContentRoute: ContentRoute,
+  LoginRoute: LoginRoute,
+  ShopRoute: ShopRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
